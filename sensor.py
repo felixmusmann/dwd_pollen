@@ -32,6 +32,8 @@ REST_API_KEY_REGION_NAME = 'region_name'
 
 REST_API_KEY_PARTREGION_ID = 'partregion_id'
 
+REST_API_KEY_REGION_ID = 'region_id'
+
 REST_API_KEY_CONTENT = 'content'
 
 REST_API_KEY_LAST_UPDATE = "last_update"
@@ -132,6 +134,8 @@ class DwdPollenAPI:
             for partregion_data in rest_api_result[REST_API_KEY_CONTENT]:
 
                 current_partregion_id = partregion_data[REST_API_KEY_PARTREGION_ID]
+                if current_partregion_id == -1:
+                    current_partregion_id = partregion_data[REST_API_KEY_REGION_ID]
 
                 # Is the current partregion_id included in the ones we should parse?
                 if current_partregion_id in self._partregion_ids:
